@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+package pb;
+
+option go_package = "/pb";
+
+import "memory_message.proto";
+
+//定义我们正在寻找哪种类型的笔记本电脑
+message Filter {
+    double max_price_usd = 1;       //愿意支付的最高价钱
+    uint32 min_cpu_cores = 2;       //CPU应该有的最小核心数
+    double min_cpu_ghz = 3;         //CPU的最低频率
+    Memory min_ram = 4;             //Ram的大小
+}

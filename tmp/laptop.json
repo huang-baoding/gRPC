@@ -1,0 +1,62 @@
+{
+  "id": "b71f40e1-9050-45bb-a9ce-a5a6c963e5d4",
+  "brand": "Dell",
+  "name": "XPS",
+  "cpu": {
+    "brand": "AMD",
+    "name": "Ryzen 5 pro 2700U",
+    "number_cores": 6,
+    "number_thread": 11,
+    "min_ghz": 2.1302514142028355,
+    "max_ghz": 3.1131630740551754
+  },
+  "ram": {
+    "value": "61",
+    "uint": "GIGABYTE"
+  },
+  "gpus": [
+    {
+      "brand": "Nvidia",
+      "name": "RTX 2060",
+      "min_ghz": 1.0795589288245853,
+      "max_ghz": 1.775082987597745,
+      "memory": {
+        "value": "2",
+        "uint": "GIGABYTE"
+      }
+    }
+  ],
+  "storages": [
+    {
+      "driver": "SSD",
+      "memory": {
+        "value": "160",
+        "uint": "GIGABYTE"
+      }
+    },
+    {
+      "driver": "HDD",
+      "memory": {
+        "value": "4",
+        "uint": "TERABYTE"
+      }
+    }
+  ],
+  "screen": {
+    "size_inch": 16.871542,
+    "resolution": {
+      "width": 4916,
+      "height": 2329
+    },
+    "panel": "OLED",
+    "multitouch": false
+  },
+  "keyboard": {
+    "layout": "AZERTY",
+    "backlit": true
+  },
+  "weight_kg": 2.939502874147351,
+  "price_usd": 2301.3107049226073,
+  "release_year": 2019,
+  "update_at": "2023-02-25T02:58:08.476412500Z"
+}

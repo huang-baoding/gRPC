@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+package pb;
+
+option go_package = "/pb";
+
+import "memory_message.proto";
+
+message Storage {                   //电脑的存储磁盘
+    enum Driver{                    //Driver(存储器)的类型
+        UNKNOWN = 0;
+        HDD = 1;
+        SSD = 2;
+    }
+
+    Driver driver =1;
+    Memory memory = 2;
+}

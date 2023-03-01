@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+package pb;
+
+option go_package = "/pb";
+
+message Memory{
+    enum Unit{                     //嵌套类型，只能在该message中使用，存储单位，位或字节或者其他
+        UNKNOWN = 0;
+        BIT = 1;
+        BYTE = 2;
+        KYLOBYTE = 3;
+        MEGABYTE = 4;
+        GIGABYTE = 5;
+        TERABYTE = 6;
+    }
+
+     uint64 value = 1;              //存储容量
+     Unit uint = 2;
+}
+

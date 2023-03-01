@@ -1,0 +1,31 @@
+syntax = "proto3";
+
+package pb;
+
+option go_package = "/pb";
+
+import "processor_message.proto";
+import "memory_message.proto";
+import "storage_message.proto";
+import "screen_message.proto";
+import "keyboard_message.proto";
+import "google/protobuf/timestamp.proto";
+
+message Laptop {
+    string id = 1;                              //电脑id
+    string brand = 2;                           //品牌
+    string name = 3;
+    CPU cpu = 4;
+    Memory ram = 5;                             //随机存储内存
+    repeated GPU gpus = 6;
+    repeated Storage storages = 7;
+    Screen screen = 8;
+    Keyboard keyboard = 9;
+    oneof weight {                                  //只有最后一个设置字段的值有效。
+        double weight_kg = 10;
+        double weight_lb = 11;
+    }
+    double price_usd = 12;                          //电脑价格
+    uint32 release_year = 13;                       //发布年份
+    google.protobuf.Timestamp update_at = 14;       //记录存储系统中最后更新的时间。
+}

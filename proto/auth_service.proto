@@ -1,0 +1,17 @@
+//为客户端提供一个新的服务来登录并获取访问令牌
+syntax = "proto3";
+
+package pb;
+
+option go_package = "/pb";
+
+message LoginRequest {
+    string username = 1;
+    string password = 2;
+  }
+
+message LoginResponse { string access_token = 1; }      //访问令牌
+
+service AuthService {
+    rpc Login(LoginRequest) returns (LoginResponse) {};
+  }

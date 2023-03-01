@@ -1,0 +1,58 @@
+syntax = "proto3";
+
+package pb;
+
+option go_package = "/pb";
+
+import "laptop_message.proto";
+import "filter_message.proto";
+
+message CreateLaptopRequest {
+    Laptop laptop = 1;
+}
+
+message CreateLaptopResponse {
+    string id = 1;
+}
+
+message SearchLaptopRequest {
+    Filter filter = 1;    
+}
+message SearchLaptopResponse {
+    Laptop laptop = 1;
+}
+
+message UploadImageRequest {            //将图片文件分成多个chunk，并在每个请求消息中一一发给服务器
+    oneof data{                         
+        ImageInfo info = 1;             //第一个请求中将只包含元数据。
+        bytes chunk_data = 2;           //后面的请求包含图像数据块。
+    }
+}
+
+message ImageInfo{
+    string laptop_id = 1;               //电脑id
+    string image_type = 2;              //图像类型如.jpg或.png
+}
+
+message UploadImageResponse {   //服务器收到所有的图像块后返回此响应。
+    string id = 1;              //生成的ID。
+    uint32 size = 2;            //图像字节大小
+}
+
+message RateLaptopRequest {
+    string laptop_id = 1;
+    double score = 2;  //我们将为客户端编写一个API,以从1~10的分数对电脑流进行评分。服务器将响应每台笔记本电脑的平均分数流
+  }
+  
+  message RateLaptopResponse {
+    string laptop_id = 1;
+    uint32 rated_count = 2;     //这台电脑被服务器评分的次数
+    double average_score = 3;   //平均评分
+  }
+
+service LaptopService {         //用于远程调用的场景应该要使用到关键字service
+    rpc CreateLaptop(CreateLaptopRequest) returns (CreateLaptopResponse){};             //一元
+    rpc SearchLaptop(SearchLaptopRequest) returns (stream SearchLaptopResponse){};      //服务器流
+    rpc UploadImage(stream UploadImageRequest) returns (UploadImageResponse){};         //客户端流
+    rpc RateLaptop(stream RateLaptopRequest) returns (stream RateLaptopResponse) {};
+}
